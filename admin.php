@@ -156,7 +156,11 @@ echo "<form action='ajouterchercheur.php' method='POST'>
 </div>";
 
 //Bouton pour le pdf
-echo "<button type='button' class='btn btn-primary' href='./creer_pdf.php'>Générer un PDF</button>";
+echo "<div class=\"container pdf\">
+				<section>
+					<a class=\"btn btn-primary\" href=\"./creer_pdf.php\" role=\"button\">Générer un PDF</a>
+				</section>
+			</div>";
 
 
 mysqli_close($connexion);?>

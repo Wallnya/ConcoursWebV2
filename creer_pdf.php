@@ -33,7 +33,7 @@
                      $this -> SetFont('');
                         $this->SetFillColor(198,245,251);
                         $this->Cell($w,$hcell,$datum,1,0,$align,$fill);
-                    
+
 
                 $i++;
             }
@@ -43,13 +43,13 @@
     }
 
     $pdf = new PDF();
-    
+
 
     //CONNEXION DB ET RECUPERATION DATA
     $date = date('d-m-Y');
 
     //CONNEXION DB ET RECUPERATION DATA
-    $connexion = mysqli_connect("localhost","g1","mdp01","WebContest")
+    $connexion = mysqli_connect("localhost","root","","webcontest")
         or die ("Erreur lors de la connexion à la base de données");
 
 
@@ -79,7 +79,7 @@
         }
     }
 
-    mysqli_free_result($requetep);
+    mysqli_free_result($requete);
 
 
     mysqli_close($connexion);
