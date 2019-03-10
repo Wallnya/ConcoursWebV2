@@ -28,9 +28,6 @@ or die("Connexion au serveur $serveur impossible pour $login");
 		}
 
 	}
-	//echo $id;
-	//echo htmlspecialchars($mdp2);
-
 // Comparaison du pass envoyé via le formulaire avec la base
 
 	if (!isset($id)){
@@ -40,11 +37,12 @@ or die("Connexion au serveur $serveur impossible pour $login");
 		$p = $_POST['mdp'];
 
 	//	echo'ici'.htmlspecialchars(p);
+
 		if (htmlspecialchars($p) == $mdp2) {
 			$_SESSION['id'] = $id;
-			if(preg_match('/^search$/',$id)){
+			if(preg_match('/search[1-9]/',$_POST["id"])){
 				$_SESSION['status'] = "search";
-				header('Location: index.php');
+				header('Location: user.php');
 			}
 			else{
 				$_SESSION['status'] = "admin";

@@ -10,12 +10,12 @@ echo "<h1>Reservation</h1>";
   mysqli_select_db($connexion,$bd)
   or die ("Toujours pas.");
   $ressource = "2";
-   
+
   $requete = $connexion -> prepare("UPDATE Ressource SET jour = DATE(NOW()) WHERE idn = ?");
   $requete->bind_param("s",$ressource);
   $requete -> execute();
   $requete->close();
 	mysqli_close($connexion);
-	header('Location: index.php');
+	header('Location: user.php');
 
 ?>
