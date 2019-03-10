@@ -76,7 +76,6 @@ echo "<h1> Voici la table des ressources.</h1>";
 echo "<center><table border='1' cellpadding='5' cellpacing='9'>";
 
 echo "<tr><td>L'ID de la ressource</td><td>Le nom de la ressource</td><td>La date de reservation</td><td>Nom du chercheur</td><td>Action possible</td></tr>";
-$compteur =1;
 while($ligne=mysqli_fetch_row($resultat)){
   echo "<tr>";
   for ($i =0;$i<4;$i++){
@@ -98,8 +97,7 @@ while($ligne=mysqli_fetch_row($resultat)){
       }
   }
   //Bouton pour supprimer une ressource
-  echo "<td><a href='supprimeressource.php?id=".$compteur."'>Cliquer ici pour supprimer une ressource</a></td>";
-  $compteur=$compteur+1;
+  echo "<td><a href='supprimeressource.php?id=".$ligne[0]."'>Cliquer ici pour supprimer une ressource</a></td>";
   echo "</tr>";
 
 }
