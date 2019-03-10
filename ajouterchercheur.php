@@ -2,15 +2,15 @@
   session_start();
 
 $serveur = "localhost";
-$login = "g1";
-$mdp = "mdp01";
+$login = "root";
+$mdp = "";
 
 //connexion au serveur mysql (ici localhost)
 $connexion=mysqli_connect($serveur,$login,$mdp)
 or die("Connexion au serveur $serveur impossible pour $login");
 
 //nom de la base de donnees
-$bd="WebContest";
+$bd="webcontest";
 
 //connexion à la base de donnees
 mysqli_select_db($connexion,$bd)
@@ -23,7 +23,8 @@ $reqprepare=mysqli_prepare($connexion,$reqinsert);
 if(isset($_POST['id']) and isset($_POST['mdp']) ){
 	$login=$_POST['id'];
 	$mdp=$_POST['mdp'];
-	$reg = '/^search([4-9]|[1-9][0-9])/';
+  $status="search";
+	$reg = '/search[0-9]|/';
 
   if(preg_match($reg,$login)){
     // insertion
@@ -36,4 +37,5 @@ if(isset($_POST['id']) and isset($_POST['mdp']) ){
 }
 
 mysqli_close($connexion);
+header('Location: admin.php');
 ?>

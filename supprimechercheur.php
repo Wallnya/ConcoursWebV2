@@ -2,33 +2,28 @@
   session_start();
   if(isset($_GET['id']) ){
   	$login=$_GET['id'];
-  	$reg = '/^search([4-9]|[1-9][0-9])$/';
+  	$reg = '/search[5-9]/';
+    $connexion = mysqli_connect("localhost","root","")
+    or die ("Tu es nul. Recommence.");
+    // $connexion = mysqli_connect("localhost","g1","")
+    // or die ("Tu es nul. Recommence.");
 
+    $bd="webcontest";
+
+    mysqli_select_db($connexion,$bd)
+    or die ("Toujours pas.");
     if(preg_match($reg,$login)){
-
-      $connexion = mysqli_connect("localhost","g1","mdp01")
-      or die ("Tu es nul. Recommence.");
-      // $connexion = mysqli_connect("localhost","g1","")
-      // or die ("Tu es nul. Recommence.");
-
-      $bd="WebContest";
-
-      mysqli_select_db($connexion,$bd)
-      or die ("Toujours pas.");
-
-      $requete = $connexion -> prepare("DELETE FROM Personnel WHERE id LIKE ?");
       // suppressions
+      $requete = $connexion -> prepare("DELETE FROM Personnel WHERE id LIKE ?");
+
       $requete->bind_param("s",$login);
       $requete -> execute();
       $requete->close();
-      header('Location: admin.php');
     }
-  	else{
-      echo "Vous ne pouvez pas supprimer ce chercheur";
-    }
+    mysqli_close($connexion);
+
   }
+  header('Location: admin.php');
 
 
-
-	mysqli_close($connexion);
 ?>

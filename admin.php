@@ -128,39 +128,32 @@ $resultat=mysqli_query($connexion,$requete);
 $ligne = 0;
 echo "<center><table border='1' cellpadding='5' cellpacing='9'>";
 echo "<tr><td>L'ID du chercheur</td><td>Le mot de passe du chercheur</td><td>Status</td><td>Action possible</td></tr>";
-$test = 0;
-$compteur=0;
 while($ligne=mysqli_fetch_row($resultat)){
   echo "<tr>";
-  $test = $ligne[0];
   //$row_cnt = $resultat->num_rows;
   $row_cnt = mysqli_num_rows($resultat);
   for ($i = 0;$i<3;$i++){
       echo "<td>".$ligne[$i]."</td>";
   }
   //Bouton pour supprimer un chercheur
-  echo "<td><a href='supprimechercheur.php?id=".$test."'>supprimer</a></td>";
-  $compteur=$compteur+1;
+  echo "<td><a href='supprimechercheur.php?id=".$ligne[0]."'>supprimer</a></td>";
   echo "</tr>";
-
 }
 echo"</table></center>";
 //Bouton un chercheur
 echo"<button type=\"button\" class=\"btn btn-secondary\" onclick=\"bascule('header2');\">Ajouter un chercheur</button>";
-echo "<div id='header2' style=\"visibility:hidden;\">
+echo "<div id='header2' style=\"visibility:hidden;\">";
+echo "<form action='ajouterchercheur.php' method='POST'>
+<div class=\"top-margin\">
 
-<form method=\"post\" action=\"ajouterchercheur.php\">
-    <p>
-        <label for=\"pseudo\">L'id :</label>
-        <input type=\"text\" name=\"id\" id=\"id\" placeholder=\"Ex : Zozor\" size=\"30\" maxlength=\"10\" /></br>
-        <label for=\"pseudo\">Le mot de passe :</label>
-        <input type=\"text\" name=\"mdp\" id=\"mdp\" placeholder=\"Ex : Zozor\" size=\"30\" maxlength=\"10\" /></br>
-    </p>
+<label for=\"pseudo\">L'id :</label>
+<input type=\"text\" name=\"id\" id=\"id\" placeholder=\"Ex : Zozor\" size=\"30\" maxlength=\"10\" /></br>
+<label for=\"pseudo\">Le mot de passe :</label>
+<input type=\"text\" name=\"mdp\" id=\"mdp\" placeholder=\"Ex : Zozor\" size=\"30\" maxlength=\"10\" /></br>
+</div>
+<button class=\"btn btn-action\" type=\"submit\">Valider</button>
 </form>
-
-";
-
-echo "<INPUT TYPE=\"submit\" NAME=\"nom\" VALUE=\" Envoyer \"></div>";
+</div>";
 
 //Bouton pour le pdf
 echo "<button type='button' class='btn btn-primary' href='./creer_pdf.php'>Générer un PDF</button>";
